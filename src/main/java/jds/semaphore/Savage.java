@@ -29,7 +29,7 @@ public class Savage implements Runnable {
         try {
             while (true) {
                 Thread.sleep(2 * 1000);
-                //mutex.acquireUninterruptibly();
+                mutex.acquireUninterruptibly();
 
                 // CASE: Panela esteja vazia
                 if (coordinator.getFoodInPot() == 0) {
@@ -49,7 +49,7 @@ public class Savage implements Runnable {
                         + coordinator.getFoodInPot());
                 coordinator.eat();
 
-                //mutex.release(); // Libera o semáforo principal (próximo selvagem)
+                mutex.release(); // Libera o semáforo principal (próximo selvagem)
             }
         } catch( InterruptedException e ) {
             e.printStackTrace();
